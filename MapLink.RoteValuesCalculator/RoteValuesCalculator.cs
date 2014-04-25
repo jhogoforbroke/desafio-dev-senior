@@ -5,6 +5,7 @@ namespace MapLink.RoteValuesCalculator
 {
     public interface IRoteValuesCalculator
     {
-        RouteQueryResult Calculate(List<Address> addresses, RoteType roteType);
+        RouteCost Calculate(List<Address> addresses);
+        RouteCost Calculate(List<Address> addresses, RoteType roteType);
     }
 }
