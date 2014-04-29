@@ -1,11 +1,23 @@
-﻿using System.Collections.Generic;
-using MapLink.RoteValuesCalculator.br.com.maplink.services;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace MapLink.RoteValuesCalculator
 {
-    public interface IRoteValuesCalculator
+    public class RoteValuesCalculator : IRoteValuesCalculator
     {
-        RouteCost Calculate(List<Address> addresses);
-        RouteCost Calculate(List<Address> addresses, RoteType roteType);
+        public List<Address> Addresses = new List<Address>();
+
+        public RouteCost Calculate()
+        {
+            throw new NotImplementedException();
+        }
+
+        public RouteCost Calculate(RoteType roteType)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

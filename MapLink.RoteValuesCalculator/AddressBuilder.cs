@@ -9,17 +9,12 @@ namespace MapLink.RoteValuesCalculator
 {
     public class AddressBuilder : AddressAbstractBuilder
     {
-        public AddressBuilder(string street, string number, string city, string state)
-            : base(street, number, city, state)
-        {
-        }
+        public AddressBuilder() {}
 
-        //TODO: Alterar para injeção da dependencia no builder para criação de um Address com service mock para testes unitários
-        protected override AddressService BuildAddressService()
-        {
-            throw new System.NotImplementedException();
-        }
+        public AddressBuilder(string street, string number, string city, string state, IAddressService addressService)
+            : base(street, number, city, state, addressService) {}
 
+        
         protected override void BuildProperties(string street, string number, string city, string state)
         {
             address.SetAddress(street, number, city, state); 

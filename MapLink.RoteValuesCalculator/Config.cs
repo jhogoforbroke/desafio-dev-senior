@@ -6,13 +6,38 @@ using System.Threading.Tasks;
 
 namespace MapLink.RoteValuesCalculator
 {
-    //TODO: Adicionar configurações ao XML
     public static class Config
     {
-        public static string AccessToken { get; set; }
+        public static string AccessToken
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["AccessToken"] ?? "";
+            }
+        }
 
-        public static int AddressSearchType { get; set; }
-        public static int AddressResultRangePageIndex { get; set; }
-        public static int AddressResultRecordsPerPage { get; set; }
+        public static int AddressSearchType
+        {
+            get
+            {
+                return Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["AddressSearchType"]);
+            }
+        }
+
+        public static int AddressResultRangePageIndex
+        {
+            get
+            {
+                return Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["AddressResultRangePageIndex"]);
+            }
+        }
+
+        public static int AddressResultRecordsPerPage
+        {
+            get
+            {
+                return Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["AddressResultRecordsPerPage"]);
+            }
+        }
     }
 }

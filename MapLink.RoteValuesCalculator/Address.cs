@@ -17,9 +17,9 @@ namespace MapLink.RoteValuesCalculator
         public AddressOptions AddressOptions { get; set; }
         public Point Point { get; private set; }
 
-        private AddressService _addressService;
+        private IAddressService _addressService;
 
-        public Address(AddressService addressService)
+        public Address(IAddressService addressService)
         {
             _addressService = addressService;
         }
@@ -38,7 +38,7 @@ namespace MapLink.RoteValuesCalculator
 
         public Point FindPoint()
         {
-            return _addressService.FindPoint(this);
+            return _addressService.FindPoint(this.ToMapLinkAddress(), AddressOptions);
         }
 
         public br.com.maplink.services.Address ToMapLinkAddress()

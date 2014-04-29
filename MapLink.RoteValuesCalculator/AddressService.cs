@@ -7,20 +7,20 @@ using MapLink.RoteValuesCalculator.br.com.maplink.services;
 
 namespace MapLink.RoteValuesCalculator
 {
-    public class AddressService
+    public class AddressService : IAddressService
     {
         private readonly AddressFinder _addressFinder;
 
-        public string Token = Config.AccessToken; // "c13iyCvmcC9mzwkLd0LCbmYC5mUF5m2jNGNtNGt6NmK6NJK=";
+        private readonly string Token = Config.AccessToken;
 
         public AddressService(AddressFinder addressFinder)
         {
             _addressFinder = addressFinder;
         }
 
-        public Point FindPoint(Address address)
+        public Point FindPoint(br.com.maplink.services.Address address, AddressOptions addressOptions)
         {
-            var findResponse = _addressFinder.findAddress(address.ToMapLinkAddress(), address.AddressOptions, Token);
+            var findResponse = _addressFinder.findAddress(address, addressOptions, Token);
 
             return (findResponse.addressLocation != null && findResponse.addressLocation.Length > 0) 
                 ? findResponse.addressLocation[0].point : null;
