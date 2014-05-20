@@ -20,8 +20,12 @@ namespace MapLink.RoteValuesCalculator
 
         public AddressAbstractBuilder() {}
 
-        protected AddressAbstractBuilder(string street, string number, string city, string state, IAddressService addressService)
+        protected AddressAbstractBuilder(string street, string number, string city, string state)
         {
+           /* Criação do serviço deve ficar em um container de DI
+              mas para fins de simplicidade e exemplo será realizado no proprio builder */
+           var addressFinder = new AddressFinder();
+           var addressService = new AddressService(addressFinder);
            address = BuildAddress(street, number, city, state, addressService);
         }
 

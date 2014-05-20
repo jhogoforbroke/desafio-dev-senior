@@ -8,7 +8,7 @@ namespace MapLink.RoteValuesCalculator
 {
     public class RoteValuesCalculator : IRoteValuesCalculator
     {
-        public List<Address> Addresses = new List<Address>();
+        public List<Address> Addresses { get; set; }
 
         public RouteCost Calculate()
         {

@@ -11,8 +11,8 @@ namespace MapLink.RoteValuesCalculator
     {
         public AddressBuilder() {}
 
-        public AddressBuilder(string street, string number, string city, string state, IAddressService addressService)
-            : base(street, number, city, state, addressService) {}
+        public AddressBuilder(string street, string number, string city, string state)
+            : base(street, number, city, state) {}
 
         
         protected override void BuildProperties(string street, string number, string city, string state)

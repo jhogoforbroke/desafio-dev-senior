@@ -1,14 +1,15 @@
 ﻿using MapLink.RoteValuesCalculator.br.com.maplink.services;
 using Moq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using NUnit;
+using NUnit.Framework;
 
 namespace MapLink.RoteValuesCalculator.Test
 {
-    [TestClass()]
+    [TestFixture]
     public class RoutevaluesCalculatorTest
     {
-        private IRoteValuesCalculator _calculator = new RoteValuesCalculator();
+        private RoteValuesCalculator _calculator = new RoteValuesCalculator();
 
         private List<Address> _addressList = new List<Address>();
         private AddressBuilder _addressBuilder = new AddressBuilder();
@@ -27,13 +28,10 @@ namespace MapLink.RoteValuesCalculator.Test
             var totalCost = _calculator.Calculate();
         }
 
-        [TestMethod]
+        [Test]
         public void Should_find_a_address_point()
         {
-            var addressFinder = new AddressFinder();
-            var addressService = new AddressService(addressFinder);
-
-            var address = new AddressBuilder("Rua Funchal", "9.699", "São Paulo", "São Paulo", addressService).Address;
+            var address = new AddressBuilder("Rua Funchal", "9.699", "São Paulo", "São Paulo").Address;
 
             Assert.IsNotNull(address.Point);
         }
