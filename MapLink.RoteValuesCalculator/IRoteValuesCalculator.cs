@@ -6,6 +6,6 @@ namespace MapLink.RoteValuesCalculator
     public interface IRoteValuesCalculator
     {
         RouteCost Calculate();
-        RouteCost Calculate(RoteType roteType);
+        RouteCost Calculate(RouteType roteType);
     }
 }

@@ -5,11 +5,9 @@ namespace MapLink.RoteValuesCalculator
 {
     public class RouteCost
     {
-        public DateTime TotalTimeRote { get; set; }
-        public Decimal TotalDistance { get; set; }
-        public Decimal TotalFuelCost { get; set; }
-        public Decimal TotalCostWithToll { get; set; }
-
-        
+        public String TotalTimeRote { get; set; }
+        public Double TotalDistance { get; set; }
+        public Double TotalFuelCost { get; set; }
+        public Double TotalCostWithToll { get; set; }
     }
 }

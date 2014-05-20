@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MapLink.RoteValuesCalculator.br.com.maplink.services;
+using MapLink.RoteValuesCalculator.RouteService;
 
 namespace MapLink.RoteValuesCalculator
 {
@@ -10,14 +12,83 @@ namespace MapLink.RoteValuesCalculator
     {
         public List<Address> Addresses { get; set; }
 
-        public RouteCost Calculate()
+        private Vehicle _vehicle;
+
+        private string _token = Config.AccessToken;
+
+        private RouteOptions _routeOptions;
+        private RouteDetails _routeDetails;
+        private RouteInfo _routeInfo;
+
+        public RoteValuesCalculator(Vehicle vehicle)
         {
-            throw new NotImplementedException();
+            _vehicle = vehicle;
+
+            _routeOptions = new RouteOptions();
+            _routeOptions.language = Config.Language;
+            _routeOptions.routeDetails = _routeDetails;
+            _routeOptions.vehicle = _vehicle;
         }
 
-        public RouteCost Calculate(RoteType roteType)
+        public RouteCost Calculate()
         {
-            throw new NotImplementedException();
+            return RequestRouteCost(RouteType.Default);
+        }
+
+        public RouteCost Calculate(RouteType routeType)
+        {
+            return RequestRouteCost(routeType);
+        }
+
+        private RouteCost RequestRouteCost(RouteType routeType)
+        {
+            _routeDetails = new RouteDetails();
+            _routeDetails.descriptionType = Config.DesciptionType;
+            _routeDetails.optimizeRoute = true;
+            _routeDetails.routeType = Convert.ToInt32(routeType);
+
+            _routeOptions.routeDetails = _routeDetails;
+
+            using (var routeSoapClient = new RouteSoapClient())
+            {
+                _routeInfo = routeSoapClient.getRoute(GenerateRouteStop(), _routeOptions, _token);
+            }
+
+            return new RouteCost
+            {
+                TotalDistance = _routeInfo.routeTotals.totalDistance,
+                TotalFuelCost = _routeInfo.routeTotals.totalfuelCost,
+                TotalCostWithToll = _routeInfo.routeTotals.totalCost,
+                TotalTimeRote = _routeInfo.routeTotals.totalTime
+            };
+        }
+
+        private RouteStop[] GenerateRouteStop()
+        {
+            if (Addresses.Count > 0 || Addresses != null)
+            {
+                var routes = new RouteStop[Addresses.Count];
+
+                int i = 0;
+                foreach (var address in Addresses)
+                {
+                    var RoutePoint = new RouteService.Point
+                    {
+                        x = address.Point.x,
+                        y = address.Point.y
+                    };
+
+                    routes[i++] = new RouteStop
+                    {
+                        description = address.ToString(),
+                        point = RoutePoint
+                    };
+                }
+
+                return routes;
+            }
+            else
+                throw new ArgumentNullException("Adresses");
         }
     }
 }

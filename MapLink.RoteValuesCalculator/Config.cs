@@ -39,5 +39,21 @@ namespace MapLink.RoteValuesCalculator
                 return Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["AddressResultRecordsPerPage"]);
             }
         }
+
+        public static int DesciptionType
+        {
+            get
+            {
+                return Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["DesciptionType"]);
+            }
+        }
+
+        public static string Language
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["Language"] ?? "";
+            }
+        }
     }
 }
