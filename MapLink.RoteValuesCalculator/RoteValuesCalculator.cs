@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MapLink.RoteValuesCalculator.br.com.maplink.services;
 using MapLink.RoteValuesCalculator.RouteService;
 
 namespace MapLink.RoteValuesCalculator
@@ -14,9 +10,9 @@ namespace MapLink.RoteValuesCalculator
 
         private Vehicle _vehicle;
 
-        private string _token = Config.AccessToken;
+        private readonly string _token = Config.AccessToken;
 
-        private RouteOptions _routeOptions;
+        private readonly RouteOptions _routeOptions;
         private RouteDetails _routeDetails;
         private RouteInfo _routeInfo;
 

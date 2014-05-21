@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using MapLink.RoteValuesCalculator.br.com.maplink.services;
-
-namespace MapLink.RoteValuesCalculator
+﻿namespace MapLink.RoteValuesCalculator
 {
     public interface IRoteValuesCalculator
     {

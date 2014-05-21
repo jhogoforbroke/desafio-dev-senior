@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MapLink.RoteValuesCalculator.br.com.maplink.services;
+﻿using MapLink.RoteValuesCalculator.br.com.maplink.services;
 
 namespace MapLink.RoteValuesCalculator
 {
     public abstract class AddressAbstractBuilder
     {
-        protected IAddressService _addressService;
+        protected IAddressService AddressService;
 
         protected Address address;
         
@@ -33,10 +28,10 @@ namespace MapLink.RoteValuesCalculator
         {
             /* Singleton - Possibilita que um mesmo builder(AddressBuilder) 
                crie N products(Address) injetando a mesma instância de service(AddressService) */
-            if (_addressService == null || !_addressService.GetType().Equals(addressService.GetType()))
-                _addressService = addressService;
+            if (AddressService == null || !(AddressService.GetType() == addressService.GetType()))
+                AddressService = addressService;
 
-            address = new Address(_addressService);
+            address = new Address(AddressService);
 
             BuildAddressOptions();
             BuildProperties(street, number, city, state);

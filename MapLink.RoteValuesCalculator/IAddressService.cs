@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MapLink.RoteValuesCalculator.br.com.maplink.services;
+﻿using MapLink.RoteValuesCalculator.br.com.maplink.services;
 
 namespace MapLink.RoteValuesCalculator
 {

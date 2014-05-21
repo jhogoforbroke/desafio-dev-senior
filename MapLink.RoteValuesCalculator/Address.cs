@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MapLink.RoteValuesCalculator.br.com.maplink.services;
 
 namespace MapLink.RoteValuesCalculator
@@ -17,7 +13,7 @@ namespace MapLink.RoteValuesCalculator
         public AddressOptions AddressOptions { get; set; }
         public Point Point { get; private set; }
 
-        private IAddressService _addressService;
+        private readonly IAddressService _addressService;
 
         public Address(IAddressService addressService)
         {
@@ -43,7 +39,7 @@ namespace MapLink.RoteValuesCalculator
 
         public br.com.maplink.services.Address ToMapLinkAddress()
         {
-            var city = new br.com.maplink.services.City
+            var city = new City
             {
                 name = City,
                 state = State

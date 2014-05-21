@@ -1,8 +1,5 @@
-﻿using MapLink.RoteValuesCalculator.br.com.maplink.services;
-using MapLink.RoteValuesCalculator.RouteService;
-using Moq;
+﻿using MapLink.RoteValuesCalculator.RouteService;
 using System.Collections.Generic;
-using NUnit;
 using NUnit.Framework;
 
 namespace MapLink.RoteValuesCalculator.Test
@@ -19,19 +16,15 @@ namespace MapLink.RoteValuesCalculator.Test
     {
         private RoteValuesCalculator _calculator;
 
-        private List<Address> _addressList = new List<Address>();
-        private AddressBuilder _addressBuilder = new AddressBuilder();
-
-        private Mock<IAddressService> addressServiceMock = new Mock<IAddressService>();
+        private readonly List<Address> _addressList = new List<Address>();
+        private AddressBuilder _addressBuilder;
 
         [SetUp]
         public void SetUp()
         {
-            var vehicle = new Vehicle();
-            vehicle.tankCapacity = 20;
-            vehicle.averageConsumption = 9;
-            vehicle.fuelPrice = 3;
-            vehicle.averageSpeed = 60;
+            _addressBuilder = new AddressBuilder();
+
+            var vehicle = new Vehicle { tankCapacity = 20, averageConsumption = 9, fuelPrice = 3, averageSpeed = 60 };
 
             _calculator = new RoteValuesCalculator(vehicle);
         }
